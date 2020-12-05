@@ -34,6 +34,7 @@ class candidatoservice implements Iserviciobase{
                 $candidato->Puesto= $row->Puesto;
                 $candidato->Foto= $row->Foto;
                 $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
 
                 array_push($listarcandidato,$candidato); 
             }
@@ -67,6 +68,7 @@ class candidatoservice implements Iserviciobase{
                 $candidato->Puesto= $row->Puesto;
                 $candidato->Foto= $row->Foto;
                 $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
 
                 array_push($listarcandidato,$candidato); 
             }
@@ -100,6 +102,7 @@ class candidatoservice implements Iserviciobase{
                 $candidato->Puesto= $row->Puesto;
                 $candidato->Foto= $row->Foto;
                 $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
 
                 array_push($listarcandidato,$candidato); 
             }
@@ -134,6 +137,7 @@ class candidatoservice implements Iserviciobase{
                 $candidato->Puesto= $row->Puesto;
                 $candidato->Foto= $row->Foto;
                 $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
 
                 array_push($listarcandidato,$candidato); 
             }
@@ -167,6 +171,7 @@ class candidatoservice implements Iserviciobase{
                 $candidato->Puesto= $row->Puesto;
                 $candidato->Foto= $row->Foto;
                 $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
 
                 array_push($listarcandidato,$candidato); 
             }
@@ -201,6 +206,7 @@ class candidatoservice implements Iserviciobase{
                 $candidato->Puesto= $row->Puesto;
                 $candidato->Foto= $row->Foto;
                 $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
             }
         }
     return $candidato; 
@@ -240,9 +246,8 @@ class candidatoservice implements Iserviciobase{
      
      if($success){
          
-      $stmt = $this->context->db->prepare("update candidatos set Foto = ? where Id = ? ");
-    
-         $stmt->bind_param("si",$name,$candidatoid);
+      $stmt = $this->context->db->prepare("update candidatos set Foto = '$name' where Id = $candidatoid ");
+
          $stmt->execute();
          $stmt->close();
      }

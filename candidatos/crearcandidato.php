@@ -65,7 +65,6 @@ if (
             <div class="form-group">
                 <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
             </div>
-
             <!-- <div class="form-group">
                 <input type="text" class="form-control" id="partido" name="partido" placeholder="Partido">
             </div> -->

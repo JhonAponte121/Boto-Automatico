@@ -60,7 +60,6 @@ $listarcandidato = $service->GetlistaA();
 
 
             <div class="row">
-
                 <?php foreach ($listarcandidato as $candidato) : ?>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

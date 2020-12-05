@@ -75,16 +75,8 @@ $listarpuestos = $servicepuesto->Getlista();
               </h6>
               <!--  -->
               <h6 class="card-text">Votos: 
+                    <td><?php echo "$candidato->voto"?></td>
               
-
-              <?php foreach($listarpuestos as $puesto) : ?>
-                  <?php if ($puesto->ID == $candidato->Puesto) : ?>
-                    <td><?php echo "$puesto->Nombre"?></td>
-                  <?php endif ?>
-                <?php endforeach; ?>
-                
-              
-
               </h6>
               <!--  -->
               <h6 class="card-text">Estado: <?php if ($candidato->Estado == 1) : ?>
