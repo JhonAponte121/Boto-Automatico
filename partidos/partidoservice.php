@@ -9,10 +9,11 @@ class partidoservice implements Iserviciobase{
         $this->servicio = new Servicio();
         $this->context = new Context($directory);
     }
+
     public function Getlista(){
 
         $listarpartido = array();
-        $stmt = $this->context->db->prepare("select * from partido");
+        $stmt = $this->context->db->prepare("SELECT * FROM partido");
     
         $stmt->execute();
         $result= $stmt->get_result();
@@ -24,7 +25,7 @@ class partidoservice implements Iserviciobase{
             
             while($row = $result->fetch_object()){
                 
-              $partido = new partido();
+                $partido = new partido();
 
                 $partido->ID= $row->Id;
                 $partido->Nombre= $row->Nombre;
@@ -41,7 +42,6 @@ class partidoservice implements Iserviciobase{
         
     return $listarpartido;
     $stmt->close();
-    
     }
     public function GetlistaD(){
 
@@ -60,7 +60,7 @@ class partidoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -94,7 +94,7 @@ class partidoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -127,7 +127,7 @@ class partidoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -160,7 +160,7 @@ class partidoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -216,9 +216,8 @@ class partidoservice implements Iserviciobase{
     public function añadir($entidad)
 {
 
-     $stmt = $this->context->db->prepare("insert into partido (Nombre,Descripcion,Logo_Partido,Estado) Values(?,?,?,?)");
+     $stmt = $this->context->db->prepare("INSERT INTO partido (Nombre,Descripcion,Logo_Partido,Estado) Values('$entidad->Nombre','$entidad->Descripcion','$entidad->Logo_Partido',$entidad->Estado)");
 
-     $stmt->bind_param("ssi",$entidad->Nombre,$entidad->Descripcion, $entidad->Logo_Partido,$entidad->Estado); 
      $stmt->execute();
      $stmt->close();
 
@@ -267,8 +266,7 @@ public function eliminar($ID){
     
     $elemento= $this->GetByid($id);
         
-         $stmt = $this->context->db->prepare("update partido set Nombre = ?, Logo_Partido = ?,Descripcion = ?,Estado= ? where Id = ?");
-         $stmt->bind_param("sssi",$entidad->Nombre,$entidad->Logo_Partido, $entidad->Descripcion,$entidad->Estado,$id);
+         $stmt = $this->context->db->prepare("update partido set Nombre = '$entidad->Nombre', Logo_Partido = '$entidad->Logo_Partido',Descripcion = '$entidad->Descripcion',Estado=$entidad->Estado where Id =$id");
          $stmt->execute();
          $stmt->close();
     

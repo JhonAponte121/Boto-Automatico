@@ -1,6 +1,6 @@
 <?php
 
-class eleccion{
+class elecciones{
 
     public $ID; 
     public $Nombre;
@@ -18,7 +18,7 @@ public function enviardatos($ID,$Nombre,$Fecha_de_Realizacion,$Estado){
     $this->ID=$ID;
     $this->Nombre=$Nombre;
     $this->Fecha_de_Realizacion=$Fecha_de_Realizacion;
-     $this->Estado=$Estado;
+    $this->Estado=$Estado;
      
      
 }

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="..assents/css/stlye.css">
 
-<?php 
+<?php
 
 include "../layout/layout.php";
 require_once '../database/servicio.php';
@@ -13,24 +13,24 @@ require_once "puestoelectivo.php";
 
 $service = new puestoservice("database");
 
-if (isset($_POST['nombre']) && isset($_POST['desc'])
+if (
+    isset($_POST['nombre']) && isset($_POST['desc'])
 
-&& isset($_POST['estado'])) {
+    && isset($_POST['estado'])
+) {
 
-  $newpuesto = new puestoelectivo();
-  
-   $newpuesto->enviardatos(0,$_POST['nombre'],$_POST['desc'],$_POST['estado']);
+    $newpuesto = new puestoelectivo();
 
-   echo '<script>alert("Puesto añadido")</script>'; 
-  
-  $service->añadir($newpuesto);
-  
-   
-      header("location: listarpuesto.php");
-      exit();
-  
-  
-    }
+    $newpuesto->enviardatos(0, $_POST['nombre'], $_POST['desc'], $_POST['estado']);
+
+    echo '<script>alert("Puesto añadido")</script>';
+
+    $service->añadir($newpuesto);
+
+
+    header("location: listarpuesto.php");
+    exit();
+}
 
 ?>
 
@@ -53,12 +53,10 @@ if (isset($_POST['nombre']) && isset($_POST['desc'])
 
 
             <div class="estado">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" style="width: 1rem" id="read" name="estado"  value="1" checked
-                             placeholder="Estado"> <label >Activo</label> 
-                             <input type="checkbox" style="width: 1rem" id="read" disabled name="estado"  value="0"
-                             placeholder="Estado"> <label >Inactivo</label> 
-                        </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" style="width: 1rem" id="active" name="estado" value="1" checked placeholder="Estado"> <label>Activo</label>
+                <input type="radio" style="width: 1rem" id="inactive" name="estado" value="0" placeholder="Estado"> <label>Inactivo</label>
+            </div>
             <div></div>
 
             <a href=" listarpuesto.php" class="btn btn-outline-secondary">Volver</a>&nbsp;&nbsp;

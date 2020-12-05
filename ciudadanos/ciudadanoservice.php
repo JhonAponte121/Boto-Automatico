@@ -60,7 +60,7 @@ class ciudadanoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -94,7 +94,7 @@ class ciudadanoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -127,7 +127,7 @@ class ciudadanoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -160,7 +160,7 @@ class ciudadanoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;

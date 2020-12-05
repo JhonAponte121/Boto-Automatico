@@ -19,7 +19,7 @@
 
 include "../layout/layout.php";
 require_once "../auth.php";
-require_once "../database/Servicio.php";
+require_once "../database/servicio.php";
 require_once "../database/Iserviciobase.php";
 require_once "../candidatos/candidatoservice.php";
 require_once "../database/Context.php";

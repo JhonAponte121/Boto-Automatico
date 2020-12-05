@@ -65,7 +65,7 @@ $listarpartido = $service->Getlista();
 <?php printFooter(true); ?>
 <script type="text/javascript">
     function confirmar() {
-        var respuesta = confirm("Seguro de eliminar a este Candidato??");
+        var respuesta = confirm("Seguro de eliminar a este Candidato?");
         if (respuesta == true) {
             return true;
         } else {

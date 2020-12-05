@@ -8,6 +8,8 @@ include "../layout/layout.php";
 
 <h3 class="font-weight-bold">Elecciones</h3>
 
+
+
 <div class="card text-white bg-dark cover-container" style=" width: 10rem";>
 
                  <div class="card-body">

@@ -22,6 +22,6 @@
   }
   
   header("location: listarpuesto.php");
-  exist();
+  exit();
   
   ?>

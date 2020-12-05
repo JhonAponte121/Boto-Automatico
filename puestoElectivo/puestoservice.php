@@ -1,4 +1,5 @@
 <?php
+include_once "puestoelectivo.php";
 
 class puestoservice implements Iserviciobase{
  
@@ -13,7 +14,7 @@ class puestoservice implements Iserviciobase{
 
         $listarpuesto = array();
     
-        $stmt = $this->context->db->prepare("select * from puesto_electivo");
+        $stmt = $this->context->db->prepare("SELECT * FROM puesto_electivo");
     
         $stmt->execute();
         
@@ -21,7 +22,7 @@ class puestoservice implements Iserviciobase{
         $result= $stmt->get_result();
     
         if($result->num_rows === 0){
-            
+            // echo 'esrserserserserserser';
             return $listarpuesto;
         }else{
             
@@ -29,15 +30,13 @@ class puestoservice implements Iserviciobase{
                 
               $puesto = new puestoelectivo();
 
-                $puesto->ID= $row->ID;
+                $puesto->ID= $row->Id;
                 $puesto->Nombre= $row->Nombre;
                 $puesto->Descripcion= $row->Descripcion;
                 $puesto->Estado= $row->Estado;
 
-
                 array_push($listarpuesto,$puesto);
                
-                
             }
         }
         
@@ -45,6 +44,7 @@ class puestoservice implements Iserviciobase{
     $stmt->close();
     
     }
+    
     public function GetlistaD(){
 
         $listarcandidato = array();
@@ -62,7 +62,7 @@ class puestoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -96,7 +96,7 @@ class puestoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -129,7 +129,7 @@ class puestoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -162,7 +162,7 @@ class puestoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -198,7 +198,7 @@ class puestoservice implements Iserviciobase{
     
     
                 
-                $puesto->ID= $row->ID;
+                $puesto->ID= $row->Id;
                 $puesto->Nombre= $row->Nombre;
                 $puesto->Descripcion= $row->Descripcion;
                 $puesto->Estado= $row->Estado;
@@ -215,8 +215,7 @@ class puestoservice implements Iserviciobase{
     public function añadir($entidad)
 {
 
-     $stmt = $this->context->db->prepare("insert into puesto_electivo (Nombre,Descripcion,Estado) Values(?,?,?)");
-     $stmt->bind_param("sss",$entidad->Nombre,$entidad->Descripcion,$entidad->Estado);
+     $stmt = $this->context->db->prepare("insert into puesto_electivo (Nombre,Descripcion,Estado) Values('$entidad->Nombre','$entidad->Descripcion',$entidad->Estado)");
      $stmt->execute();
      $stmt->close();
 
@@ -236,13 +235,10 @@ public function eliminar($id){
     
     $elemento= $this->GetByid($id);
         
-         $stmt = $this->context->db->prepare("update puesto_electivo set Nombre = ?,Descripcion = ?,Estado= ? where Id = ?");
-         $stmt->bind_param("sssi",$entidad->Nombre,$entidad->Descripcion,$entidad->Estado,$id);
+         $stmt = $this->context->db->prepare("UPDATE puesto_electivo set Nombre = '$entidad->Nombre',Descripcion = '$entidad->Descripcion',Estado= $entidad->Estado where Id = $id");
          $stmt->execute();
          $stmt->close();
     
-        
-         
         
     }
     

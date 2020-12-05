@@ -27,7 +27,7 @@ class candidatoservice implements Iserviciobase{
                 
               $candidato = new candidato();
 
-                $candidato->ID= $row->ID;
+                $candidato->ID= $row->Id;
                 $candidato->Nombre= $row->Nombre;
                 $candidato->Apellido= $row->Apellido;
                 $candidato->Partido= $row->Partido;
@@ -211,9 +211,10 @@ class candidatoservice implements Iserviciobase{
     public function añadir($entidad)
 {
 
-     $stmt = $this->context->db->prepare("insert into candidatos (Nombre,Apellido,Partido,Foto,Puesto,Estado,voto) Values(?,?,?,?,?,?,?)");
-     $stmt->bind_param("ssiisi",$entidad->Nombre,$entidad->Apellido,$entidad->Partido, $entidad->Foto,$entidad->Puesto,$entidad->Estado,$entidad->voto);
-     $stmt->execute();
+     $stmt = $this->context->db->prepare("insert into candidatos (Nombre,Apellido,Partido,Foto,Puesto,Estado,voto) Values('$entidad->Nombre','$entidad->Apellido',$entidad->Partido,'$entidad->Foto',$entidad->Puesto,$entidad->Estado,0)");
+    //  $stmt = $this->context->db->prepare("insert into candidatos (Nombre,Apellido,Partido,Foto,Puesto,Estado,voto) Values('Ismael','Santa',1,'fdssf',1,0,43)");
+    //  $stmt->bind_param("ssiisi",$entidad->Nombre,$entidad->Apellido,$entidad->Partido, $entidad->Foto,$entidad->Puesto,$entidad->Estado,$entidad->voto);
+     if(!$stmt->execute()) echo "". $stmt->error;
      $stmt->close();
 
      $candidatoid = $this->context->db->insert_id;
@@ -260,10 +261,8 @@ public function eliminar($id){
     
     $elemento= $this->GetByid($id);
         
-         $stmt = $this->context->db->prepare("update candidatos set Nombre = ?,Apellido = ?,Partido= ?,
-         Puesto= ?,Estado= ? where Id = ?");
-         $stmt->bind_param("ssiisi",$entidad->Nombre,$entidad->Apellido,$entidad->Partido,$entidad->Puesto
-         ,$entidad->Estado,$id);
+         $stmt = $this->context->db->prepare("update candidatos set Nombre = '$entidad->Nombre',Apellido = '$entidad->Apellido',Partido= $entidad->Partido,
+         Puesto= $entidad->Puesto,Estado= $entidad->Estado where Id = $id");
          $stmt->execute();
          $stmt->close();
     

@@ -31,10 +31,10 @@ class eleccionservice implements Iserviciobase{
             
             while($row = $result->fetch_object()){
                 
-              $eleccion = new eleccion();
+              $eleccion = new elecciones();
     
                 
-                $eleccion->ID= $row->ID;
+                $eleccion->ID= $row->Id;
                 $eleccion->Nombre= $row->Nombre;
                 $eleccion->Fecha_de_Realizacion= $row->Fecha_de_Realizacion;
                 $eleccion->Estado= $row->Estado;
@@ -52,6 +52,7 @@ class eleccionservice implements Iserviciobase{
    
     
 }
+
 public function GetlistaD(){
 
     $listarcandidato = array();
@@ -69,7 +70,7 @@ public function GetlistaD(){
             
           $candidato = new candidato();
 
-            $candidato->ID= $row->ID;
+            $candidato->ID= $row->Id;
             $candidato->Nombre= $row->Nombre;
             $candidato->Apellido= $row->Apellido;
             $candidato->Partido= $row->Partido;
@@ -103,7 +104,7 @@ public function GetlistaS(){
             
           $candidato = new candidato();
 
-            $candidato->ID= $row->ID;
+            $candidato->ID= $row->Id;
             $candidato->Nombre= $row->Nombre;
             $candidato->Apellido= $row->Apellido;
             $candidato->Partido= $row->Partido;
@@ -136,7 +137,7 @@ public function GetlistaA(){
             
           $candidato = new candidato();
 
-            $candidato->ID= $row->ID;
+            $candidato->ID= $row->Id;
             $candidato->Nombre= $row->Nombre;
             $candidato->Apellido= $row->Apellido;
             $candidato->Partido= $row->Partido;
@@ -169,7 +170,7 @@ public function GetlistaP(){
             
           $candidato = new candidato();
 
-            $candidato->ID= $row->ID;
+            $candidato->ID= $row->Id;
             $candidato->Nombre= $row->Nombre;
             $candidato->Apellido= $row->Apellido;
             $candidato->Partido= $row->Partido;

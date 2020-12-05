@@ -22,6 +22,6 @@
   }
   
   header("location: listarcandidato.php");
-  exist();
+  exit();
   
   ?>
