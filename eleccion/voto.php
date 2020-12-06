@@ -79,7 +79,7 @@ $listarcandidato = $service->GetlistaP();
 
                     <div class="card-body">
 
-                        <h5 class="card-title"> <?php echo $candidato->Nombre ?></h5>
+                        <h5 class="card-title" > <?php echo $candidato->Nombre ?></h5>
                         <h5 class="card-subtitle mb-2"><?php echo $candidato->Apellido ?></h5>
                         <h6 class="card-text">Partido: <?php echo ($servicepartido->GetByid($candidato->ID))->Nombre ?? 'Partido Eliminado' ?></h6>
 

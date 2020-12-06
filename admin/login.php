@@ -5,7 +5,7 @@
     <script type="text/javascript" src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Administraccion</title>
 
 </head>
 
@@ -18,7 +18,7 @@ include "../layout/layout.php";
 
     <?php printHeader(true); ?>
 
-    <h4>Iniciar sesion como Administrador</h4>
+    <h4>Administrador</h4>
     <br>
     <div class="form-group">
         <input type="text" class="form-control" id="adminUser" name="adminUser" placeholder="Usuario"><br>
@@ -26,7 +26,7 @@ include "../layout/layout.php";
     </div>
 
     <a class="btn btn-primary my-2" onclick="Validar()">Entrar</a>
-    <a href="../index.php" class="btn btn-dark my-2" onclick="">Atras</a>
+    <a href="../index.php" class="btn btn-dark my-2" onclick="">Inicio</a>
 
 
     <?php printFooter(true); ?>

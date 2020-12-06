@@ -42,7 +42,7 @@ exit();
         <header class="masthead mb-10%">
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="admin/login.php">Iniciar Como Administrador</a>
+                    <a class="nav-link active" href="admin/login.php">Loggin Administrador</a>
 
                 </nav>
             </div>
