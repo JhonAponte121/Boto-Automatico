@@ -55,6 +55,42 @@ class candidatoservice implements Iserviciobase{
         if($result->num_rows === 0){
             
             return $listarcandidato;
+
+        }else{
+            
+            while($row = $result->fetch_object()){
+                
+              $candidato = new candidato();
+
+                $candidato->ID= $row->Id;
+                $candidato->Nombre= $row->Nombre;
+                $candidato->Apellido= $row->Apellido;
+                $candidato->Partido= $row->Partido;
+                $candidato->Puesto= $row->Puesto;
+                $candidato->Foto= $row->Foto;
+                $candidato->Estado= $row->Estado;
+                $candidato->voto = $row->voto;
+
+                array_push($listarcandidato,$candidato); 
+            }
+        }
+        
+    return $listarcandidato;
+    $stmt->close();
+    
+    }
+    public function GetByidPuesto($id){
+
+        $listarcandidato = array();
+    
+        $stmt = $this->context->db->prepare("select * from candidatos where Puesto=$id");
+        $stmt->execute();
+        $result= $stmt->get_result();
+    
+        if($result->num_rows === 0){
+            
+            return $listarcandidato;
+
         }else{
             
             while($row = $result->fetch_object()){
@@ -213,6 +249,7 @@ class candidatoservice implements Iserviciobase{
     $stmt->close();
     
     }
+    
     
     public function añadir($entidad)
 {

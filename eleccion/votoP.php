@@ -15,7 +15,7 @@
     </div>
 </header>
 
-<?php 
+<?php
 
 include "../layout/layout.php";
 require_once "../auth.php";
@@ -26,23 +26,33 @@ require_once "../database/Context.php";
 require_once "../database/FileHandler.php";
 require_once "../database/JsonFileHandler.php";
 require_once "../candidatos/candidato.php";
+require_once "../puestoElectivo/puestoservice.php";
 
-$islogged=false;
-      if(isset($_SESSION['identidad']) && $_SESSION['identidad']!=null){
-$identidad=json_decode($_SESSION['identidad']);
-$islogged=true;
+require_once "../partidos/partido.php";
+require_once "../partidos/partidoservice.php";
 
-      }
+
+$islogged = false;
+if (isset($_SESSION['identidad']) && $_SESSION['identidad'] != null) {
+    $identidad = json_decode($_SESSION['identidad']);
+    $islogged = true;
+}
 
 $service = new candidatoservice("../database");
-$servicio=new Servicio();
+$servicio = new Servicio();
+
+$servicepuesto = new puestoservice("database");
+$listarpuesto = $servicepuesto->Getlista();
+
+$servicepartido = new partidoservice("database");
+$listarpartido = $servicepartido->Getlista();
+
 $voto = 1;
 
-if(isset($_GET['id']  )){
+if (isset($_GET['id'])) {
 
-  $candidatoid=$_GET['id'];
-  $elemento=$service->GetByid($candidatoid);
-
+    $candidatoid = $_GET['id'];
+    $elemento = $service->GetByid($candidatoid);
 }
 
 $listarcandidato = $service->GetlistaP();
@@ -51,61 +61,60 @@ $listarcandidato = $service->GetlistaP();
 
 <?php printHeader(true); ?>
 
-<h3 class="font-weight-bold">Presidentes</h3>
 
-<br>
-<div class="row">
+<?php foreach ($listarpuesto as $puesto) : ?>
+    <h3 class="font-weight-bold"><?php echo $puesto->Nombre ?></h3>
+    <br>
+    <div class="row">
+        <?php $list = $service->GetByidPuesto($puesto->ID) ?>
 
-    <?php foreach ($listarcandidato as $candidato) : ?>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;
+        <?php if ($list != null) : ?>
+            <?php foreach ($list as $candidato) : ?>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
 
-    <div class="card text-white bg-dark cover-container" style=" width: 14rem" ;>
-        <img class="bd-placeholder-img card-img-top"
-            src="<?php echo "../candidatos/imagenes/candidato/" .  $candidato->Foto ?>" width="100%" height="150"
-            role="img" aria-label="Placeholder: Thumbnail">
+                <div class="card text-white bg-dark cover-container" style=" width: 14rem" ;>
+                    <img class="bd-placeholder-img card-img-top" src="<?php echo "../candidatos/imagenes/candidato/" .  $candidato->Foto ?>" width="100%" height="150" role="img" aria-label="Placeholder: Thumbnail">
 
-        <div class="card-body">
+                    <div class="card-body">
 
-            <h5 class="card-title"> <?php echo $candidato->Nombre?></h5>
-            <h5 class="card-subtitle mb-2"><?php echo $candidato->Apellido?></h5>
-            <h6 class="card-text">Partido: <?php if ($candidato->Partido == 1): ?>
-                <td>PLD</td>
-                <?php else: ?>
-                <td>PRD</td>
-                <?php endif; ?></h6>
-            <h6 class="card-text">Puesto: <?php if ($candidato->Puesto == 1): ?>
-                <td>Presidente</td>
+                        <h5 class="card-title"> <?php echo $candidato->Nombre ?></h5>
+                        <h5 class="card-subtitle mb-2"><?php echo $candidato->Apellido ?></h5>
+                        <h6 class="card-text">Partido: <?php echo ($servicepartido->GetByid($candidato->ID))->Nombre ?? 'Partido Eliminado' ?></h6>
 
-                <?php endif; ?></h6>
-            <h6 class="card-text">Estado: <?php if ($candidato->Estado == 1): ?>
+                        <h6 class="card-text">Puesto: <?php echo ($servicepuesto->GetByid($candidato->Puesto))->Nombre  ?></h6>
+                        <h6 class="card-text">Estado: <?php if ($candidato->Estado == 1) : ?>
+                                <td>Activo</td>
+                            <?php else : ?>
+                                <td>Inactivo</td>
+                            <?php endif; ?></h6>
 
-                <td>Activo</td>
-                <?php else: ?>
-                <td>Inactivo</td>
-                <?php endif; ?></h6>
+                        <form method="post" value="<?php echo $elemento->ID; ?> ">
+                            <!-- <a  class="btn btn-warning" onclick="return confirmar()">Votar</a> -->
+                            <button type="submit" class="btn btn-primary">Votar</button>
+                            <!-- <a href="votoD.php" class="btn btn-warning" onclick="return confirmar()">Votar</a> -->
 
-            <form method="post" value="<?php echo $elemento->ID;?> ">
-                <a href="votoD.php" class="btn btn-warning" onclick="return confirmar()">Votar</a>
+                    </div>
 
-        </div>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <?php endforeach; ?>
+        <?php endif; ?>
+
 
     </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <?php endforeach; ?>
-
-</div>
+<?php endforeach; ?>
 <br>
 <?php printFooter(true); ?>
 <script type="text/javascript">
-function confirmar() {
-    var respuesta = confirm("Esta seguro de votar por este candidato?");
-    if (respuesta == true) {
-        return true;
-    } else {
-        return false;
+    function confirmar() {
+        var respuesta = confirm("Esta seguro de votar por este candidato?");
+        if (respuesta == true) {
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 </script>
