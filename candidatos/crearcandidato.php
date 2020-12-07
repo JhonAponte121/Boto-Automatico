@@ -21,6 +21,13 @@ require_once "../partidos/partido.php";
 require_once "../partidos/partidoservice.php";
 require_once "candidato.php";
 
+session_start();
+
+if (!isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/login.php');
+}
+
 $service = new candidatoservice("database");
 $servicepuesto = new puestoservice("database");
 

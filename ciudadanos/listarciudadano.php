@@ -9,8 +9,14 @@ require_once "../database/FileHandler.php";
 require_once "../database/JsonFileHandler.php";
 require_once "ciudadano.php";
 
-$service = new ciudadanoservice("database");
+session_start();
 
+if (!isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/login.php');
+}
+
+$service = new ciudadanoservice("database");
 $listarciudadano = $service->Getlista();
 
 ?>

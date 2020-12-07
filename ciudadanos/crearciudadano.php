@@ -2,8 +2,6 @@
 
 <?php 
 
-
-
 include "../layout/layout.php";
  require_once '../database/servicio.php';
 require_once "../database/Iserviciobase.php";
@@ -12,6 +10,13 @@ require_once "../database/Context.php";
 require_once "../database/FileHandler.php";
 require_once "../database/JsonFileHandler.php";
 require_once "ciudadano.php";
+
+session_start();
+
+if (!isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/login.php');
+}
 
 $service = new ciudadanoservice("database");
 

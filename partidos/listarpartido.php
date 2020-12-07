@@ -9,10 +9,15 @@ require_once "../database/FileHandler.php";
 require_once "../database/JsonFileHandler.php";
 require_once "partido.php";
 
+session_start();
+
+if (!isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/login.php');
+}
+
 $service = new partidoservice("database");
-
 $listarpartido = $service->Getlista();
-
 
 ?>
 <body class="text-center">

@@ -14,6 +14,12 @@ require_once "../partidos/partidoservice.php";
 require_once "../puestoElectivo/puestoelectivo.php";
 require_once "../puestoElectivo/puestoservice.php";
 
+session_start();
+
+if (!isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/login.php');
+}
 
 $servicepartido = new partidoservice("database");
 $listarpartido = $servicepartido->Getlista();
