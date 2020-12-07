@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 05-12-2020 a las 23:52:53
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 08-12-2020 a las 00:45:01
 -- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.9
+-- Versión de PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,12 +43,8 @@ CREATE TABLE `candidatos` (
 --
 
 INSERT INTO `candidatos` (`Id`, `Nombre`, `Apellido`, `Partido`, `Puesto`, `Foto`, `Estado`, `voto`) VALUES
-(2, 'Luis', 'Abinader', 1, 1, 'Foto', b'0', 34),
-(5, 'Marvin', 'Sena', 1, 1, '5.jpeg', b'1', 0),
-(6, 'miguel', 'santos', 2, 4, '6.jpeg', b'1', 0),
-(8, 'Manuel', 'Santos', 2, 4, '8.png', b'1', 0),
-(9, 'El segundo', 'Santos', 2, 4, '9.png', b'0', 0),
-(10, 'prd', 'prd', 2, 3, '', b'0', 0);
+(14, 'Luis', 'Abinader', 5, 1, '14.jpeg', b'1', 0),
+(15, 'Gonzalo', 'Castillo', 1, 1, '15.jpeg', b'0', 0);
 
 -- --------------------------------------------------------
 
@@ -69,11 +65,24 @@ CREATE TABLE `ciudadanos` (
 --
 
 INSERT INTO `ciudadanos` (`Identidad`, `Nombre`, `Apellido`, `Email`, `Estado`) VALUES
-('1', 'lucas', 'muji', 'asdf@asdf.asdf', b'1'),
 ('123123', 'nombre', 'apeliido', 'sf@gmaid.com', b'1'),
 ('40209488671', 'Ismael Francisco', 'Santana Borgess', 'ismael@gmail.com', b'1'),
 ('40209488672', 'Maria', 'Lopez', 'maria@gmail.com', b'1'),
-('40209488673', 'Lucass', 'Borgess', 'bor@gmail.comm', NULL);
+('40209488673', 'Lucass', 'Borgess', 'bor@gmail.comm', b'0'),
+('40227028597', 'Alan', 'Roman', 'alan_29@hotmail.com', b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `elecciones`
+--
+
+CREATE TABLE `elecciones` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `Fecha` datetime NOT NULL,
+  `Estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -94,9 +103,9 @@ CREATE TABLE `partido` (
 --
 
 INSERT INTO `partido` (`Id`, `Nombre`, `Descripcion`, `Logo_Partido`, `Estado`) VALUES
-(1, 'PLD', 'Partido de la Liberacion Dominicana', '', b'1'),
-(2, 'PRD', 'Partido Reformista Dominicano', 'Array', b'0'),
-(4, 'PRM', 'Partido Reformista Moderno.', '4.', b'0');
+(1, 'PLD', 'Partido de la Liberacion Dominicana', '2.jpeg', b'1'),
+(2, 'PRD', 'Partido Reformista Dominicano', '3.png', b'0'),
+(5, 'PRM', 'Partido Revolucionario Moderno', 'Array', b'1');
 
 -- --------------------------------------------------------
 
@@ -150,6 +159,12 @@ ALTER TABLE `ciudadanos`
   ADD PRIMARY KEY (`Identidad`);
 
 --
+-- Indices de la tabla `elecciones`
+--
+ALTER TABLE `elecciones`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indices de la tabla `partido`
 --
 ALTER TABLE `partido`
@@ -175,13 +190,13 @@ ALTER TABLE `votos`
 -- AUTO_INCREMENT de la tabla `candidatos`
 --
 ALTER TABLE `candidatos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `puesto_electivo`
