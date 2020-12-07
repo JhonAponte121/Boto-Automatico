@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!--  -->
 
             <div class="form-group">
-                <input type="file" class="form-control" id="foto" name="foto" required>
+                <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
             </div>
 
             <div class="estado">

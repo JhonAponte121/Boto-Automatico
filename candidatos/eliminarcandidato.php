@@ -1,7 +1,7 @@
 <?php 
 
   require_once 'candidato.php';
-    require_once '../database/servicio.php';
+  require_once '../database/servicio.php';
   require_once '../database/Iserviciobase.php';
   require_once '../database/FileHandler.php';
   require_once '../database/JsonFileHandler.php';
@@ -24,4 +24,4 @@
   header("location: listarcandidato.php");
   exit();
   
-  ?>
+  ?> 

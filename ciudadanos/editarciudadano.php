@@ -72,12 +72,11 @@ if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['apellido'])
                             <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $elemento->Email;?>">
                         </div>
 
-                        <div class="estado">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" style="width: 1rem" id="read" name="estado"  value="1" 
-                             placeholder="Estado" value="<?php echo $elemento->Estado;?>"> <label >Activo</label> 
-                             <input type="checkbox" style="width: 1rem" id="read"  name="estado"  value="0"
-                             placeholder="Estado"> <label >Inactivo</label> 
+                        <div class="form-group estado">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <input type="radio" style="width: 1rem" id="active" name="estado" value="1" <?php if($elemento->Estado) echo "checked='checked'" ?>> <label>Activo</label>
+                            <input type="radio" style="width: 1rem" id="inactive" name="estado" value="0" <?php if(!$elemento->Estado) echo "checked='checked'" ?>> <label>Inactivo</label>
                         </div>
 
                         <br>

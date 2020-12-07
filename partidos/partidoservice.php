@@ -212,44 +212,43 @@ class partidoservice implements Iserviciobase{
     
     
     public function añadir($entidad)
-{
+    {
 
-     $stmt = $this->context->db->prepare("INSERT INTO partido (Nombre,Descripcion,Logo_Partido,Estado) Values('$entidad->Nombre','$entidad->Descripcion','$entidad->Logo_Partido',$entidad->Estado)");
+      $stmt = $this->context->db->prepare("INSERT INTO partido (Nombre,Descripcion,Logo_Partido,Estado) Values('$entidad->Nombre','$entidad->Descripcion','$entidad->Logo_Partido',$entidad->Estado)");
 
-     $stmt->execute();
-     $stmt->close();
+      $stmt->execute();
+      $stmt->close();
 
-     $partidoid = $this->context->db->insert_id;
+      $partidoid = $this->context->db->insert_id;
 
-     if(isset($_FILES['Logo_Partido'])){
-     
-     $photofile=$_FILES['Logo_Partido'];
-     if($photofile['error']==4){
-     $entidad->foto = "";
-        
-       }else{
-           
-    
-    $typeReplace = str_replace("image/", "", $_FILES['Logo_Partido']['type']);
-     $type= $photofile['type'];
-     $size= $photofile['size'];
-     $name= $partidoid . '.' . $typeReplace;
-     $tmpname= $photofile['tmp_name'];
-     
-     $success=$this->servicio->uploadImage('imagenes/partido/',$name,$tmpname,$type,$size);
-     
-     if($success){
-         
-      $stmt = $this->context->db->prepare("update partido set Logo_Partido = ? where Id = ? ");
-    
-         $stmt->bind_param("si",$name,$partidoid);
-         $stmt->execute();
-         $stmt->close();
-     }
+      if(isset($_FILES['Logo_Partido']))
+      {
+        $photofile=$_FILES['Logo_Partido'];
+
+        if($photofile['error']==4)
+        {
+          $entidad->foto = "";
+        }
+        else
+        {
+          $typeReplace = str_replace("image/", "", $_FILES['Logo_Partido']['type']);
+          $type= $photofile['type'];
+          $size= $photofile['size'];
+          $name= $partidoid . '.' . $typeReplace;
+          $tmpname= $photofile['tmp_name'];
+
+          $success=$this->servicio->uploadImage('imagenes/partido/',$name,$tmpname,$type,$size);
+
+          if($success)
+          {
+            $stmt = $this->context->db->prepare("update partido set Logo_Partido = '$name' where Id = $partidoid ");
+
+            $stmt->execute();
+            $stmt->close();
+          }
+        }
+      }
     }
-    }
-
-}
 
 public function eliminar($ID){
     $stmt = $this->context->db->prepare("delete from partido where Id = ? ");
@@ -264,7 +263,8 @@ public function eliminar($ID){
     
     $elemento= $this->GetByid($id);
         
-    $stmt = $this->context->db->prepare("update partido set Nombre = '$entidad->Nombre', Logo_Partido = '$entidad->Logo_Partido',Descripcion = '$entidad->Descripcion',Estado=$entidad->Estado where Id =$id");
+    $stmt = $this->context->db->prepare("update partido set Nombre = '$entidad->Nombre', Logo_Partido = '$entidad->Logo_Partido', Descripcion = '$entidad->Descripcion', Estado=$entidad->Estado where Id = $id");
+
     $stmt->execute();
     $stmt->close();
 
@@ -280,7 +280,7 @@ public function eliminar($ID){
       else
       {
       
-        $typeReplace = str_replace("image/", "", $_FILES['foto']['type']);
+        $typeReplace = str_replace("image/", "", $_FILES['Logo_Partido']['type']);
         $type= $photofile['type'];
         $size=$photofile['size'];
         $name=$id . '.' . $typeReplace;
@@ -290,11 +290,10 @@ public function eliminar($ID){
 
         if($success)
         {
-          $stmt = $this->context->db->prepare("update partido set Logo_Partido= ? where Id =? ");
+          $stmt = $this->context->db->prepare("update partido set Logo_Partido = '$name' where Id = $id ");
 
-          $stmt->bind_param("si",$name,$id);
-          $stmt->execute();
-          $stmt->close();
+            $stmt->execute();
+            $stmt->close();
         }
       }
     }  

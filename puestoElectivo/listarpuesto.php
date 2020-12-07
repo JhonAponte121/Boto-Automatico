@@ -25,52 +25,43 @@ $listarpuesto = $service->Getlista();
     </div>
 <?php printHeader(true); ?>
 
+<div class="contenedor">
+    <center><h3>Listado de puestos</h3></center>
+    <div class="row justify-content-center">
+      <table class="table fill">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Estado</th>
+            <th colspan="2">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
 
+          if($listarpuesto != null)
+          {
+              foreach ($listarpuesto as $puesto) :        
+        
+        ?>
+            <td><?=$puesto->Nombre?></td>
+            <td><?=$puesto->Descripcion?></td>
+            <td><?php if ($puesto->Estado == 1) : echo "Activo"; else: echo "Inactivo"; endif; ?></td>
+            <td>
+              <a href="editarpuesto.php?id=<?php echo $puesto->ID; ?>" class="card-link btn btn-warning btn-block">Editar</a>
+              <a href="eliminarpuesto.php?id=<?php echo $puesto->ID; ?>" class="card-link btn btn-danger btn-block ml-0" onclick="return confirm('¿Estas seguro de querer eliminar este puesto?')">Eliminar</a>
+            </td>
+          </tr>
 
-
-
-
-<h3 class="font-weight-bold">Puestos</h3>
-<br>
-
-
-<div class="row">
-
-<?php foreach ($listarpuesto as $puesto) : ?>
-  <div class="card text-white bg-dark cover-container" style=" width: 14rem";>
-
-                 <div class="card-body">
-                       <h5 class="card-title"> <?php echo $puesto->Nombre?></h5>
-                       <h5 class="card-subtitle mb-2"><?php echo $puesto->Descripcion?></h5>
-                      <h6 class="card-text">Estado: <?php if ($puesto->Estado == 1): ?>
-
-<td>Activo</td>
-<?php else: ?>
-
-    <td>Inactivo</td>
-
-<?php endif ?></h6>
-                      <a href="editarpuesto.php?id=<?php echo $puesto->ID; ?>" class="card-link btn btn-outline-primary">Editar</a>
-                      <a href="eliminarpuesto.php?id=<?php echo $puesto->ID; ?>" class="card-link btn btn-outline-danger"
-                                    onclick="return confirmar()">Eliminar</a>
-                                    </div>
-
-             </div>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-             <?php endforeach; ?>
-             </div>
-
-<?php printFooter(true); ?>
-<script type="text/javascript">
-    function confirmar() {
-        var respuesta = confirm("Seguro de eliminar a este Candidato??");
-        if (respuesta == true) {
-            return true;
-        } else {
-            return false;
+        <?php
+          endforeach;
         }
-    }
-  
- 
-    </script>
+
+        ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <?php printFooter(true); ?>

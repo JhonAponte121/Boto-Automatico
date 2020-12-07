@@ -16,12 +16,8 @@ if (isset($_GET['id'])) {
   $partidoid = $_GET['id'];
   $elemento = $service->GetByid($partidoid);
 
-  if (
-    isset($_POST['nombre']) && isset($_POST['desc'])
-    && isset($_FILES['Logo_Partido'])
-    && isset($_POST['estado'])
-  ) {
-
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+  {
     $actualizar = new partido();
 
     $actualizar->enviardatos($partidoid, $_POST['nombre'], $_FILES['Logo_Partido'], $_POST['desc'], $_POST['estado']);
@@ -52,9 +48,9 @@ if (isset($_GET['id'])) {
       <div class="form-group">
         <input type="text" class="form-control" id="desc" value="<?php echo $elemento->Descripcion; ?>" name="desc" placeholder="Descripcion">
       </div>
-      <img class="bd-placeholder-img card-img-top" src="<?php echo "imagenes/partido/" . $elemento->Logo_Partido ?>" width="100%" style=" width: 15rem" height="200" aria-label="Placeholder: Thumbnail">
+      <img class="bd-placeholder-img card-img-top mb-3" src="imagenes/partido/<?php echo $elemento->Logo_Partido ?>" width="100%" style=" width: 15rem" height="200" aria-label="Placeholder: Thumbnail">
       <div class="form-group">
-        <input type="file" class="form-control" id="foto" name="Logo_Partido">
+        <input type="file" class="form-control" id="foto" accept="image/*" name="Logo_Partido">
 
         <div class="form-group ">
           <input type="radio" style="width: 1rem" id="active" name="estado" value="1" <?php if($elemento->Estado) echo 'checked="checked"'?>> <label>Activo</label>

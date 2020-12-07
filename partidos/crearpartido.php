@@ -14,9 +14,8 @@ require_once "partido.php";
 
 $service = new partidoservice("database");
 
-if (isset($_POST['nombre']) && isset($_POST['desc'])
-&&  isset($_FILES['Logo_Partido'])
-&& isset($_POST['estado'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
 
   $newpartido = new partido();
   
@@ -48,7 +47,7 @@ if (isset($_POST['nombre']) && isset($_POST['desc'])
             </div>
 
             <div class="form-group">
-                <input type="file" class="form-control" id="logo" name="Logo_Partido">
+                <input type="file" class="form-control" id="logo" name="Logo_Partido" accept="image/*">
             </div>
 
             <div class="estado">

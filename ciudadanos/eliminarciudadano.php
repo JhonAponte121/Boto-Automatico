@@ -1,7 +1,7 @@
 <?php 
 
   require_once 'ciudadano.php';
-   require_once '../database/servicio.php';
+  require_once '../database/servicio.php';
   require_once '../database/Iserviciobase.php';
   require_once '../database/FileHandler.php';
   require_once '../database/JsonFileHandler.php';
@@ -22,6 +22,6 @@
   }
   
   header("location: listarciudadano.php");
-  exist();
+  exit();
   
   ?>

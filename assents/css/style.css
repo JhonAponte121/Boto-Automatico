@@ -32,9 +32,12 @@ a:hover {
 .contenedor
 {
   width: 100%;
-  background-color: #808B96;
+  background-color: #566573 ;
   color: white;
-  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  margin-bottom: 20px;
 }
 
 

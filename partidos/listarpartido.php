@@ -37,8 +37,8 @@ $listarpartido = $service->Getlista();
 <div class="row">
 
 <?php foreach ($listarpartido as $partido) : ?>
-    <div class="card text-white bg-dark cover-container" style=" width: 14rem";>
- <img class="bd-placeholder-img card-img-top" src="<?php echo "imagenes/partido/" .  $partido->Logo_Partido ?>" width="100%" height="150" role="img" aria-label="Placeholder: Thumbnail">
+    <div class="card text-white bg-dark cover-container ml-0 mr-3" style=" width: 14rem";>
+ <img class="bd-placeholder-img card-img-top" src="imagenes/partido/<?php echo $partido->Logo_Partido ?>" width="100%" height="150" role="img" aria-label="Placeholder: Thumbnail">
 
                  <div class="card-body">
                        <h5 class="card-title"> <?php echo $partido->Nombre?></h5>
@@ -65,7 +65,7 @@ $listarpartido = $service->Getlista();
 <?php printFooter(true); ?>
 <script type="text/javascript">
     function confirmar() {
-        var respuesta = confirm("Seguro de eliminar a este Candidato?");
+        var respuesta = confirm("Seguro de eliminar a este partido?");
         if (respuesta == true) {
             return true;
         } else {

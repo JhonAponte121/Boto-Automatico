@@ -95,7 +95,7 @@ if (isset($_GET['id'])) {
             <img class="mb-3" src="imagenes/candidato/<?php echo $elemento->Foto ?>" width="100" height="100">
             
             <div class="form-group">
-                <input type="file" class="form-control" id="foto" name="foto">
+                <input type="file" class="form-control" id="foto" accept="image/*" name="foto">
             </div>
 
             <div class="form-group  estado">
