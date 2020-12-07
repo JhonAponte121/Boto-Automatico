@@ -223,14 +223,14 @@ class puestoservice implements Iserviciobase{
 
 }
 
-public function eliminar($id){
-    $stmt = $this->context->db->prepare("delete from puesto_electivo where ID = ? ");
-       $stmt->bind_param("i",$id);
-       $stmt->execute();
-       $stmt->close();
-  
-  
-  }
+public function eliminar($id)
+{
+    $stmt = $this->context->db->prepare("update puesto_electivo set Estado = 0 where Id = $id ");
+
+    $stmt->execute();
+    $stmt->close();
+}
+
   public function editar($id,$entidad){
     
     $elemento= $this->GetByid($id);

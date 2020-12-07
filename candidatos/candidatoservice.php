@@ -293,10 +293,10 @@ class candidatoservice implements Iserviciobase{
 }
 
 public function eliminar($id){
-    $stmt = $this->context->db->prepare("delete from candidatos where Id = ? ");
-       $stmt->bind_param("i",$id);
-       $stmt->execute();
-       $stmt->close();
+    $stmt = $this->context->db->prepare("update candidatos set Estado = 0 where Id = $id ");
+
+    $stmt->execute();
+    $stmt->close();
   
   }
   public function editar($id,$entidad){

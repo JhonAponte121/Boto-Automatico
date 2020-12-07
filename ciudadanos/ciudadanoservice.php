@@ -193,13 +193,12 @@ class ciudadanoservice implements Iserviciobase{
 }
 
 public function eliminar($id){
-    $stmt = $this->context->db->prepare("delete from ciudadanos where Identidad = ? ");
-       $stmt->bind_param("s",$id);
-       $stmt->execute();
-       $stmt->close();
-  
-  
+    $stmt = $this->context->db->prepare("update ciudadanos set Estado = 0 where Identidad = $id ");
+
+    $stmt->execute();
+    $stmt->close();
   }
+
   public function GetByid($id){
 
     $ciudadano = new ciudadano();

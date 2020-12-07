@@ -251,11 +251,10 @@ class partidoservice implements Iserviciobase{
     }
 
 public function eliminar($ID){
-    $stmt = $this->context->db->prepare("delete from partido where Id = ? ");
-  
-       $stmt->bind_param("i",$ID);
-       $stmt->execute();
-       $stmt->close();
+    $stmt = $this->context->db->prepare("update partido set Estado = 0 where Id = $ID ");
+
+    $stmt->execute();
+    $stmt->close();
   
   
   }
