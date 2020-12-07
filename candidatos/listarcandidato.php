@@ -9,11 +9,10 @@ require_once "../database/FileHandler.php";
 require_once "../database/JsonFileHandler.php";
 require_once "../partidos/partido.php";
 require_once "candidato.php";
+require_once "../partidos/partido.php";
 require_once "../partidos/partidoservice.php";
 require_once "../puestoElectivo/puestoelectivo.php";
 require_once "../puestoElectivo/puestoservice.php";
-
-
 
 
 $servicepartido = new partidoservice("database");
@@ -24,6 +23,8 @@ $listarcandidato = $servicecandidato->Getlista();
 
 $servicepuesto = new puestoservice("database");
 $listarpuestos = $servicepuesto->Getlista();
+
+$partido = new partido();
 
 
 ?>
@@ -38,70 +39,49 @@ $listarpuestos = $servicepuesto->Getlista();
       </div>
       <?php printHeader(true); ?>
 
+    <div class="contenedor">
+    <center><h3>Listado de candidatos</h3></center>
+    <div class="row justify-content-center">
+      <table class="table fill">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Partido al que pertenece</th>
+            <th>Puesto al que aspira</th>
+            <th>Estado</th>
+            <th colspan="2">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
 
+          if($listarcandidato != null)
+          {
+              foreach ($listarcandidato as $candidato) :        
+        
+        ?>
+            <td><img src="imagenes/candidato/<?php echo $candidato->Foto ?>" width="100" height="100"></td>
+            <td><?=$candidato->Nombre?></td>
+            <td><?=$candidato->Apellido?></td>
+            <td><?=$servicepartido->GetByid($candidato->Partido)->Nombre ?></td>
+            <td><?=$servicepuesto->GetByid($candidato->Puesto)->Nombre ?></td>
+            <td><?php if ($candidato->Estado == 1) : echo "Activo"; else: echo "Inactivo"; endif; ?></td>
+            <td>
+              <a href="editarcandidato.php?id=<?php echo $candidato->ID; ?>" class="card-link btn btn-warning btn-block">Editar</a>
+              <a href="eliminarcandidato.php?id=<?php echo $candidato->ID; ?>" class="card-link btn btn-danger btn-block ml-0" onclick="return confirm('¿Estas seguro de querer eliminar este candidato?')">Eliminar</a>
+            </td>
+          </tr>
 
-      <h3 class="font-weight-bold">Candidatos</h3>
-      <br>
-
-
-      <div class="row">
-
-        <?php foreach ($listarcandidato as $candidato) : ?>
-          <div class="card text-white bg-dark cover-container" style=" width: 14rem" ;>
-            <img class="bd-placeholder-img card-img-top" src="<?php echo "imagenes/candidato/" .  $candidato->Foto ?>" width="100%" height="150" role="img" aria-label="Placeholder: Thumbnail">
-
-            <div class="card-body">
-              <h5 class="card-title"> <?php echo $candidato->Nombre ?></h5>
-              <h5 class="card-subtitle mb-2"><?php echo $candidato->Apellido ?></h5>
-              <h6 class="card-text">Partido: 
-                <?php foreach($listarpartido as $partido) : ?>
-                  <?php if ($candidato->Partido == $partido->ID) : ?>
-                    <td><?php echo "$partido->Nombre"?></td>
-                  <?php endif ?>
-                <?php endforeach; ?>
-                
-              </h6>
-              <h6 class="card-text">Puesto: 
-              
-
-              <?php foreach($listarpuestos as $puesto) : ?>
-                  <?php if ($puesto->ID == $candidato->Puesto) : ?>
-                    <td><?php echo "$puesto->Nombre"?></td>
-                  <?php endif ?>
-                <?php endforeach; ?>
-                
-              
-
-              </h6>
-              <!--  -->
-              <h6 class="card-text">Votos: 
-                    <td><?php echo "$candidato->voto"?></td>
-              
-              </h6>
-              <!--  -->
-              <h6 class="card-text">Estado: <?php if ($candidato->Estado == 1) : ?>
-                  <td>Activo</td>
-                <?php else : ?>
-                  <td>Inactivo</td>
-                <?php endif ?></h6>
-              <a href="editarcandidato.php?id=<?php echo $candidato->ID; ?>" class="card-link btn btn-outline-primary">Editar</a>
-              <a href="eliminarcandidato.php?id=<?php echo $candidato->ID; ?>" class="card-link btn btn-outline-danger" onclick="return confirmar()">Eliminar</a>
-            </div>
-
-          </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <?php endforeach; ?>
-      </div>
-
-      <?php printFooter(true); ?>
-      <script type="text/javascript">
-        function confirmar() {
-          var respuesta = confirm("Seguro de eliminar a este Candidato??");
-          if (respuesta == true) {
-            return true;
-          } else {
-            return false;
-          }
+        <?php
+          endforeach;
         }
-      </script>
+
+        ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <?php printFooter(true); ?>

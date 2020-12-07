@@ -30,17 +30,13 @@ $listarpuesto = $servicepuesto->Getlista();
 $servicepartido = new partidoservice("database");
 $listarpartido = $servicepartido->Getlista();
 
-if (
-    isset($_POST['nombre']) && isset($_POST['apellido'])
-    && isset($_POST['partido']) && isset($_POST['puesto'])
-    && isset($_POST['estado'])
-) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $newcandidato = new candidato();
 
     $newcandidato->enviardatos(rand(1, 999999), $_POST['nombre'], $_POST['apellido'], $_POST['partido'], $_POST['puesto'], $_POST['estado'], 0);
 
-    echo '<script>alert("Ciudadano añadido")</script>';
+    echo '<script>alert("Candidato añadido")</script>';
 
     $service->añadir($newcandidato);
 
@@ -54,16 +50,16 @@ if (
 <?php printHeader(true); ?>
 
 
-<div class="card text-white bg-dark mb-3">
+<div class="card con-padding text-white bg-dark mb-3">
     <h5 class="card-header">Crear Candidato</h5>
     <div class="card-body">
         <form enctype="multipart/form-data" method="POST">
             <div class="form-group ">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required>
             </div>
             <!-- <div class="form-group">
                 <input type="text" class="form-control" id="partido" name="partido" placeholder="Partido">
@@ -74,29 +70,34 @@ if (
             </div> -->
             <!--  -->
 
-            <select class="selectpicker" data-show-subtext="true" id="puesto" name="partido" data-live-search="true">
-            <?php foreach ($listarpartido as $partido) : ?>
-                <option value="<?php echo $partido->ID?>"><?php echo $partido->Nombre; ?></option>
-             <?php endforeach; ?>      
-            </select>
+            <div class="form-group">
+                <label>Partido: </label>
+                <select class="selectpicker" data-show-subtext="true" id="puesto" name="partido" data-live-search="true" required>
+                <?php foreach ($listarpartido as $partido) : ?>
+                    <option value="<?php echo $partido->ID?>"><?php echo $partido->Nombre; ?></option>
+                 <?php endforeach; ?>      
+                </select>
+            </div>
 
-            <select class="selectpicker" data-show-subtext="true" id="puesto" name="puesto" data-live-search="true">
-            <?php foreach ($listarpuesto as $puesto) : ?>
-                <option value="<?php echo $puesto->ID?>"><?php echo $puesto->Nombre; ?></option>
-             <?php endforeach; ?>
-                
-            </select>
+            <div class="form-group">
+                <label>Puesto: </label>
+                <select class="selectpicker" data-show-subtext="true" id="puesto" name="puesto" data-live-search="true" required>
+                <?php foreach ($listarpuesto as $puesto) : ?>
+                    <option value="<?php echo $puesto->ID?>"><?php echo $puesto->Nombre; ?></option>
+                 <?php endforeach; ?>
+                </select>
+            </div>
 
             <!--  -->
 
             <div class="form-group">
-                <input type="file" class="form-control" id="foto" name="foto">
+                <input type="file" class="form-control" id="foto" name="foto" required>
             </div>
 
             <div class="estado">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" style="width: 1rem" id="active" name="estado" value="1" checked> <label>Activo</label>
-                <input type="radio" style="width: 1rem" id="inactive" name="estado" value="0"> <label>Inactivo</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" style="width: 1rem" id="active" name="estado" value="1" checked><label class="mr-3">Activo</label>
+                <input type="radio" class="ml-3" style="width: 1rem" id="inactive" name="estado" value="0"> <label>Inactivo</label>
             </div>
 
             <a href=" listarcandidato.php" class="btn btn-outline-secondary">Volver</a>&nbsp;&nbsp;

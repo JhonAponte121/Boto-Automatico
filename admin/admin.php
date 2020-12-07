@@ -1,6 +1,13 @@
 <?php 
 
 include "../layout/layout.php";
+session_start();
+
+if (!isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/login.php');
+}
+
 ?>
 
 <body class="text-center">
@@ -8,7 +15,7 @@ include "../layout/layout.php";
   <header class="masthead mb-10%">
     <div class="inner">
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="../index.php">Cerrar sesion</a>
+        <a class="nav-link active" href="logout.php">Cerrar sesion</a>
       </nav>
     </div>
 

@@ -23,7 +23,7 @@ function printHeader($isPage = false){
 
   </head>
   <body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+    <div class="cover-container d-flex w-50 mx-auto flex-column">
   <header class="masthead mb-10%">
     <div class="inner">
       <h3 class="masthead-brand">Voto Automatizado</h3>

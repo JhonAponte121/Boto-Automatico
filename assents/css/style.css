@@ -29,6 +29,14 @@ a:hover {
   border: .05rem solid rgb(148, 148, 148);
 }
 
+.contenedor
+{
+  width: 100%;
+  background-color: #808B96;
+  color: white;
+  padding: 20px;
+}
+
 
 /*
  * Base structure
@@ -37,7 +45,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: rgb(26, 123, 179);
+  background-color: #5DADE2;
 }
 
 body {
@@ -48,7 +56,8 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 
@@ -126,4 +135,14 @@ body {
   position: relative;
   left: 300px;
   top: 20px;
+}
+
+.selectpicker{
+  background-color: #EAEDED;
+}
+
+.con-padding
+{
+  padding-right: 40px;
+  padding-left: 40px;
 }

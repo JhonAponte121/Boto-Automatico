@@ -12,25 +12,32 @@ $message = "";
 
 session_start();
 
-$messageAuth=isset($_SESSION['messageAuth']) ? $_SESSION['messageAuth'] :"";
-$_SESSION['messageAuth']="";
+if (isset($_SESSION['admin_logueado'])) 
+{
+    header('location:/Boto-Automatico/admin/admin.php');
+} 
+else 
+{
+    $messageAuth=isset($_SESSION['messageAuth']) ? $_SESSION['messageAuth'] :"";
+    $_SESSION['messageAuth']="";
 
-$service = new userservice("database");
+    $service = new userservice("database");
 
-if(isset($_POST['identidad'])){
+    if(isset($_POST['identidad'])){
 
-    $result = $service->login($_POST['identidad']);
+        $result = $service->login($_POST['identidad']);
 
-    if($result != null){
-        
-$_SESSION['identidad']= json_encode($result);
+        if($result != null)
+        {
+            $_SESSION['identidad']= json_encode($result);
 
-header("Location: eleccion/votoP.php");
-exit();
-        
-    }else{
-
-        $message="cedula incorrecta o no esta registrado/as";
+            header("Location: eleccion/votoP.php");
+            exit();
+        }
+        else
+        {
+            $message="cedula incorrecta o no esta registrado/as";
+        }
     }
 }
 

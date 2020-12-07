@@ -303,8 +303,7 @@ public function eliminar($id){
     
     $elemento= $this->GetByid($id);
         
-         $stmt = $this->context->db->prepare("update candidatos set Nombre = '$entidad->Nombre',Apellido = '$entidad->Apellido',Partido= $entidad->Partido,
-         Puesto= $entidad->Puesto,Estado= $entidad->Estado where Id = $id");
+         $stmt = $this->context->db->prepare("update candidatos set Nombre = '$entidad->Nombre',Apellido = '$entidad->Apellido',Partido= $entidad->Partido, Puesto= $entidad->Puesto,Estado= $entidad->Estado where Id = $id");
          $stmt->execute();
          $stmt->close();
     
