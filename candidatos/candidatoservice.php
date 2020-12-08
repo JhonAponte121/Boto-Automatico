@@ -255,7 +255,7 @@ class candidatoservice implements Iserviciobase{
 {
 
      $stmt = $this->context->db->prepare("insert into candidatos (Nombre,Apellido,Partido,Foto,Puesto,Estado,voto) Values('$entidad->Nombre','$entidad->Apellido',$entidad->Partido,'$entidad->Foto',$entidad->Puesto,$entidad->Estado,0)");
-     
+
      if(!$stmt->execute()) echo "". $stmt->error;
      $stmt->close();
 
@@ -297,7 +297,22 @@ public function eliminar($id){
     $stmt->execute();
     $stmt->close();
   
-  }
+}
+
+public function eliminarPorPuesto($puestoid){
+    $stmt = $this->context->db->prepare("update candidatos set Estado = 0 where Puesto = $puestoid ");
+
+    $stmt->execute();
+    $stmt->close();
+}
+
+public function eliminarPorPartido($partidoid){
+    $stmt = $this->context->db->prepare("update candidatos set Estado = 0 where Partido = $partidoid ");
+
+    $stmt->execute();
+    $stmt->close();
+}
+
   public function editar($id,$entidad){
     
     $elemento= $this->GetByid($id);

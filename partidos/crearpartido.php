@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             </div>
 
             <div class="form-group">
-                <input type="file" class="form-control" id="logo" name="Logo_Partido" accept="image/*">
+                <input type="file" class="form-control" id="logo" name="Logo_Partido" accept="image/*" required>
             </div>
 
             <div class="estado">
