@@ -55,11 +55,11 @@ if (isset($_GET['id'])) {
 
 
       <div class="form-group">
-        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $elemento->Nombre; ?>" placeholder="Nombre">
+        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $elemento->Nombre; ?>" placeholder="Nombre" required>
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" id="desc" value="<?php echo $elemento->Descripcion; ?>" name="desc" placeholder="Descripcion">
+        <input type="text" class="form-control" id="desc" value="<?php echo $elemento->Descripcion; ?>" name="desc" placeholder="Descripcion" required>
       </div>
 
 

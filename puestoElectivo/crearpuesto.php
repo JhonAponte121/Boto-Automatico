@@ -51,11 +51,11 @@ if (
 
 
             <div class="form-group">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" id="desc" name="desc" placeholder="Descripcion">
+                <input type="text" class="form-control" id="desc" name="desc" placeholder="Descripcion" required>
             </div>
 
 

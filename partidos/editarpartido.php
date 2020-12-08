@@ -49,11 +49,11 @@ if (isset($_GET['id'])) {
 
 
       <div class="form-group">
-        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $elemento->Nombre; ?>" placeholder="Nombre">
+        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $elemento->Nombre; ?>" placeholder="Nombre" required>
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" id="desc" value="<?php echo $elemento->Descripcion; ?>" name="desc" placeholder="Descripcion">
+        <input type="text" class="form-control" id="desc" value="<?php echo $elemento->Descripcion; ?>" name="desc" placeholder="Descripcion" required>
       </div>
       <img class="bd-placeholder-img card-img-top mb-3" src="imagenes/partido/<?php echo $elemento->Logo_Partido ?>" width="100%" style=" width: 15rem" height="200" aria-label="Placeholder: Thumbnail">
       <div class="form-group">
