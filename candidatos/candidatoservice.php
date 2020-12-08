@@ -255,8 +255,7 @@ class candidatoservice implements Iserviciobase{
 {
 
      $stmt = $this->context->db->prepare("insert into candidatos (Nombre,Apellido,Partido,Foto,Puesto,Estado,voto) Values('$entidad->Nombre','$entidad->Apellido',$entidad->Partido,'$entidad->Foto',$entidad->Puesto,$entidad->Estado,0)");
-    //  $stmt = $this->context->db->prepare("insert into candidatos (Nombre,Apellido,Partido,Foto,Puesto,Estado,voto) Values('Ismael','Santa',1,'fdssf',1,0,43)");
-    //  $stmt->bind_param("ssiisi",$entidad->Nombre,$entidad->Apellido,$entidad->Partido, $entidad->Foto,$entidad->Puesto,$entidad->Estado,$entidad->voto);
+     
      if(!$stmt->execute()) echo "". $stmt->error;
      $stmt->close();
 

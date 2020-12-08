@@ -8,10 +8,63 @@ class eleccionservice implements Iserviciobase{
         
         $this->context = new Context($directory);
     }
-    public function eliminar($id){}
-    public function GetByid($id){}
-    public function añadir($entidad){}
-    public function editar($id,$endidad){}
+
+    public function eliminar($id){
+        $stmt = $this->context->db->prepare("update elecciones set Estado = 0 where Id = $id ");
+
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function GetByid($id)
+    {
+        $eleccion = new elecciones();
+    
+        $stmt = $this->context->db->prepare("select * from elecciones where Id = ?");
+        $stmt->bind_param("i",$id);
+        $stmt->execute();
+    
+        $result= $stmt->get_result();
+    
+        if($result->num_rows === 0)
+        {
+            return null;
+        }
+        else
+        {
+            
+            while($row = $result->fetch_object()){
+    
+                $eleccion->ID= $row->Id;
+                $eleccion->Nombre= $row->Nombre;
+                $eleccion->Fecha = $row->Fecha;
+                $eleccion->Estado= $row->Estado;
+            }
+        }
+
+        return $eleccion; 
+        $stmt->close();
+
+    }
+
+    public function añadir($entidad){
+
+        $stmt = $this->context->db->prepare("insert into elecciones (Nombre,Fecha,Estado) Values('$entidad->Nombre','$entidad->Fecha',$entidad->Estado)");
+
+        if(!$stmt->execute()) echo "". $stmt->error;
+        $stmt->close();
+    }
+
+
+    public function editar($id,$entidad){
+
+        $elemento= $this->GetByid($id);
+
+        $stmt = $this->context->db->prepare("update elecciones set Nombre = '$entidad->Nombre', Fecha = '$entidad->Fecha', Estado= $entidad->Estado where Id = $id");
+        
+        $stmt->execute();
+        $stmt->close();
+    }
     
     public function Getlista(){
 
@@ -36,11 +89,9 @@ class eleccionservice implements Iserviciobase{
                 
                 $eleccion->ID= $row->Id;
                 $eleccion->Nombre= $row->Nombre;
-                $eleccion->Fecha_de_Realizacion= $row->Fecha_de_Realizacion;
+                $eleccion->Fecha= $row->Fecha;
                 $eleccion->Estado= $row->Estado;
                
-
-
                 array_push($listarvotos,$eleccion);
                 
             }
