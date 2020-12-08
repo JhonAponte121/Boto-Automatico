@@ -62,19 +62,20 @@ if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['apellido'])
 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="id" name="id"
-                                    placeholder="Documento de Identidad" value="<?php echo $elemento->Identidad;?>">
+                                    placeholder="Documento de Identidad" required value="<?php echo $elemento->Identidad;?>">
                             </div>
 
-                            <input type="text" class="form-control" id="nombre" name="nombre"value="<?php echo $elemento->Nombre;?>" placeholder="Nombre">
+                            <input type="text" class="form-control" id="nombre" name="nombre"value="<?php echo $elemento->Nombre;?>" placeholder="Nombre" required>
                         </div>
 
                         <div class="form-group">
                             <input type="text" class="form-control" id="apellido" name="apellido"
-                                placeholder="Apellido"value="<?php echo $elemento->Apellido;?>">
+                                placeholder="Apellido" required value="<?php echo $elemento->Apellido;?>">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $elemento->Email;?>">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required value="<?php echo $elemento->Email;?>"
+                            pattern="^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$">
                         </div>
 
                         <div class="form-group estado">
