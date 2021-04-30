@@ -90,11 +90,12 @@ $listarcandidato = $service->GetlistaP();
                                 <td>Inactivo</td>
                             <?php endif; ?></h6>
 
-                        <form method="post" value="<?php echo $elemento->ID; ?> ">
+                        <form method="post">
                             <!-- <a  class="btn btn-warning" onclick="return confirmar()">Votar</a> -->
                             <button type="submit" class="btn btn-primary">Votar</button>
                             <!-- <a href="votoD.php" class="btn btn-warning" onclick="return confirmar()">Votar</a> -->
-
+                        </form>
+                        
                     </div>
 
                 </div>
